@@ -26,11 +26,13 @@ barclamp:
   display: OpenStack Master Environment
   description: Master barclamp that provides an umbrella for OpenStack components
   version: 0
+  user_managed: false
   requires:
+    - @crowbar
     - nova
     - nova_dashboard
     - keystone
-    - glace
+    - glance
     - swift
     - kong
   os_support:
@@ -45,6 +47,8 @@ nav:
     openstack: index_barclamp_path(:controller=>'openstack')
   help:
     openstack: '"/openstack_users_guide.pdf", { :link => { :target => "_blank" } }'
+  openstack:
+    instructions: To use the OpenStack barclamps, apply the desired components from top to bottom.
 
 locale_additions:
   en:
