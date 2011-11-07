@@ -27,6 +27,8 @@ barclamp:
   description: Master barclamp that provides an umbrella for OpenStack components
   version: 0
   user_managed: false
+  member:
+    - openstack
   requires:
     - @crowbar
     - nova
