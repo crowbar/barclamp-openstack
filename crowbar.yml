@@ -67,8 +67,8 @@ locale_additions:
           state: Status
           proposal: Proposal
           description: Description
-          instructions: Apply proposals in order from top to bottom.  Allow each proposal to complete to ready before applying the next one.
-          select: Select Deployment Type
+          instructions: Create and apply proposals in order from top to bottom.  Allow each proposal to complete to ready before applying the next one.
+          select: Deploy
           hybrid: Hybrid/All
           compute: Compute IaaS
           storage: Object STaaS
