@@ -1,36 +1,9 @@
 %section.box70#banner
   %div#instructions
     = t('.instructions')
-  %dl#options
-    %dt= t('.select')
-    %dd= select 'flavor', 'pick', { t('.hybrid')=>'*', t('.storage')=>'s', t('.compute')=>'c'}, :selected => "*"
 
 :javascript
   $('#graphic').attr('src','/images/powered-by-openstack.png');
   $('#banner').attr('visibility','show');
-  $('#flavor_pick').change(function (obj) {
-    flavor = $(this).val();
-    $('.barclamp').each(function(index, obj) {      
-      show = true;
-      if (flavor!='*') {
-        switch(obj.id)
-        {
-        case 'nova':
-          show = flavor=='c';
-          break;
-        case 'swift':
-          show = flavor=='s';
-          break;
-        case 'glance':
-          show = flavor=='c';
-          break;
-        default:
-          show = true;
-        }
-      }
-      obj.style.display = (show ? '' : 'none');
-    });
-  })
-  
     
 = render :partial => 'barclamp/index'
