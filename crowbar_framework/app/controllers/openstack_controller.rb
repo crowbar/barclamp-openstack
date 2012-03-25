@@ -14,6 +14,11 @@
 # 
 
 class OpenstackController < BarclampController
-    
+   
+  def index
+    @title = I18n.t('title', :scope=>'barclamp.openstack.index')
+    super
+  end
+   
 end
 
