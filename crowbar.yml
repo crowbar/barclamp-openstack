@@ -62,6 +62,7 @@ locale_additions:
         noconfig: No Configuration Options
       openstack:
         index:
+          title: OpenStack
           barclamp: Project
           state: Status
           proposal: Proposal
