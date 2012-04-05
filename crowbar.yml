@@ -24,21 +24,18 @@
 barclamp:
   name: openstack
   display: OpenStack Master Environment
-  description: Master barclamp that provides an umbrella for OpenStack components
+  description: OpenStack Project has multiple components
   version: 0
   user_managed: false
   member:
     - openstack
   requires:
     - @crowbar
-    - nova
     - nova_dashboard
     - keystone
-    - glance
-    - swift
-    - kong
   os_support:
     - ubuntu-10.10
+    - ubuntu-12.04
 
 crowbar:
   layout: 1
@@ -65,6 +62,7 @@ locale_additions:
         noconfig: No Configuration Options
       openstack:
         index:
+          title: OpenStack
           barclamp: Project
           state: Status
           proposal: Proposal
