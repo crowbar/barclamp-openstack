@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Author: RobHirschfeld
-#
 # This file directs the installation of the barclamp by the Crowbar Framework
 # The major compoents are
 #    barclamp: detalis about the barclamp
@@ -31,41 +29,13 @@ barclamp:
     - openstack
   requires:
     - @crowbar
-    - nova_dashboard
-    - keystone
   os_support:
     - ubuntu-10.10
     - ubuntu-12.04
 
 crowbar:
-  layout: 1
+  layout: 2
   order: 200
   run_order: 200
   chef_order: 200
-
-nav:
-  barclamps:
-    openstack: index_barclamp_path(:controller=>'openstack')
-  help:
-    openstack: '"/openstack_users_guide.pdf", { :link => { :target => "_blank" } }'
-
-locale_additions:
-  en:
-    nav:
-      openstack: OpenStack
-    barclamp:
-      openstack_edit_attributes: 
-        attributes: Attributes
-        noconfig: No Configuration Options
-      openstack_edit_deployment: 
-        deployment: Deployment
-        noconfig: No Configuration Options
-      openstack:
-        index:
-          title: OpenStack
-          barclamp: Project
-          state: Status
-          proposal: Proposal
-          description: Description
-          instructions: Create and apply proposals in order from top to bottom.  Allow each proposal to complete to ready before applying the next one.
 
