@@ -30,7 +30,6 @@ barclamp:
   requires:
     - @crowbar
   os_support:
-    - ubuntu-10.10
     - ubuntu-12.04
 
 crowbar:
