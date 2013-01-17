@@ -1,4 +1,4 @@
-# Copyright 2011, Dell, Inc.
+# Copyright 2013, Dell, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ barclamp:
     - ubuntu-12.04
 
 crowbar:
-  layout: 2
+  layout: 1.9
   order: 200
   run_order: 200
   chef_order: 200
