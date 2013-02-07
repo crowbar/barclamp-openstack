@@ -28,7 +28,7 @@ barclamp:
   member:
     - openstack
   requires:
-    - @crowbar
+    - '@crowbar'
   os_support:
     - ubuntu-12.04
 
