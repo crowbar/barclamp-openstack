@@ -30,7 +30,7 @@ barclamp:
   member:
     - openstack
   requires:
-    - @crowbar
+    - '@crowbar'
     - nova_dashboard
     - keystone
   os_support:
