@@ -66,6 +66,6 @@ locale_additions:
           barclamp: Project
           state: Status
           proposal: Proposal
-          description: Description
-          instructions: Create and apply proposals in order from top to bottom.
+          description: Notice
+          instructions: "OpenStack Networking code name (formerly known as Quantum) is being renamed 'Neutron' for future releases.  The UI and Documentation may be inconsistent during the transition."
 
