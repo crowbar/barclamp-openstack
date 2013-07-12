@@ -67,5 +67,5 @@ locale_additions:
           state: Status
           proposal: Proposal
           description: Notice
-          instructions: "Notice: OpenStack Networking code name (formerly known as Quantum) is being renamed to 'Neutron' for future releases.  The UI and Documentation will be updated in futyre releseas."
+          instructions: "Notice: OpenStack Networking code name (formerly known as Quantum) is being renamed to 'Neutron' for future releases.  The UI and Documentation will be updated in future releseas."
 
