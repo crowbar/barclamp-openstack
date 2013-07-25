@@ -46,8 +46,6 @@ crowbar:
 nav:
   barclamps:
     openstack: index_barclamp_path(:controller=>'openstack')
-  help:
-    openstack: '"/openstack_users_guide.pdf", { :link => { :target => "_blank" } }'
 
 locale_additions:
   en:
