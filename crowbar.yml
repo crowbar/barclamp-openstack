@@ -68,4 +68,4 @@ locale_additions:
           proposal: Proposal
           description: Notice
           instructions: "Create and apply proposals in order from top to bottom."
-
+          hint: ""
