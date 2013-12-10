@@ -4,10 +4,8 @@ en:
   barclamp:
     openstack:
       edit_attributes:
-        attributes: Attributes
         noconfig: No Configuration Options
       edit_deployment:
-        deployment: Deployment
         noconfig: No Configuration Options
       index:
         title: OpenStack
