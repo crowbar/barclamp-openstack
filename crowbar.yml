@@ -33,6 +33,8 @@ barclamp:
     - openstack
   requires:
     - '@crowbar'
+    - nova_dashboard
+    - keystone
   os_support:
     - ubuntu-12.04
 
@@ -41,4 +43,31 @@ crowbar:
   order: 200
   run_order: 200
   chef_order: 200
+
+nav:
+  barclamps:
+    openstack: index_barclamp_path(:controller=>'openstack')
+  help:
+    openstack: '"/openstack_users_guide.pdf", { :link => { :target => "_blank" } }'
+
+locale_additions:
+  en:
+    nav:
+      openstack: OpenStack
+    barclamp:
+      openstack_edit_attributes: 
+        attributes: Attributes
+        noconfig: No Configuration Options
+      openstack_edit_deployment: 
+        deployment: Deployment
+        noconfig: No Configuration Options
+      openstack:
+        index:
+          title: OpenStack
+          barclamp: Project
+          state: Status
+          proposal: Proposal
+          description: Notice
+          instructions: "Create and apply proposals in order from top to bottom."
+          hint: ""
 
