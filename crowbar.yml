@@ -39,7 +39,7 @@ barclamp:
     - ubuntu-12.04
 
 crowbar:
-  layout: 1.9
+  layout: 2.0
   order: 200
   run_order: 200
   chef_order: 200
