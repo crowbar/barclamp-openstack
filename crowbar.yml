@@ -1,4 +1,4 @@
-# Copyright 2013, Dell, Inc.
+# Copyright 2014, Dell, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,27 +22,17 @@
 barclamp:
   name: openstack
   display: OpenStack Master Environment
-  description: OpenStack Project has multiple components
-  version: 0
   license: "apache2"
-  copyright: "Dell, Inc 2013"
+  copyright: "Dell, Inc 2014"
   api_version: "v2"
   api_version_accepts: "v2"
-  user_managed: false
-  member:
-    - openstack
-  requires:
-    - '@crowbar'
-    - nova_dashboard
-    - keystone
   os_support:
+    - redhat-6.4
+    - centos-6.4
     - ubuntu-12.04
 
 crowbar:
   layout: 2.0
-  order: 200
-  run_order: 200
-  chef_order: 200
 
 nav:
   barclamps:
@@ -50,24 +40,15 @@ nav:
   help:
     openstack: '"/openstack_users_guide.pdf", { :link => { :target => "_blank" } }'
 
-locale_additions:
-  en:
-    nav:
-      openstack: OpenStack
-    barclamp:
-      openstack_edit_attributes: 
-        attributes: Attributes
-        noconfig: No Configuration Options
-      openstack_edit_deployment: 
-        deployment: Deployment
-        noconfig: No Configuration Options
-      openstack:
-        index:
-          title: OpenStack
-          barclamp: Project
-          state: Status
-          proposal: Proposal
-          description: Notice
-          instructions: "Create and apply proposals in order from top to bottom."
-          hint: ""
+roles:
+  - name: os-base
+    jig: chef-solo
+    requires:
+      - crowbar-installed-node
 
+debs:
+  ubuntu-12.04:
+    repos:
+      - deb http://us.archive.ubuntu.com/ubuntu/ precise-updates main universe
+  pkgs:
+    - ubuntu-cloud-keyring
