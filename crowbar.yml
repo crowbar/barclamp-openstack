@@ -30,6 +30,8 @@ barclamp:
     - redhat-6.4
     - centos-6.4
     - ubuntu-12.04
+  member:
+    - openstack
 
 crowbar:
   layout: 2.0
