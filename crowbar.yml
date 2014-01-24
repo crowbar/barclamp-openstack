@@ -54,3 +54,7 @@ debs:
       - deb http://us.archive.ubuntu.com/ubuntu/ precise-updates main universe
   pkgs:
     - ubuntu-cloud-keyring
+gems:
+  pkgs:
+    - knife-solo
+    - knife-solo_data_bag
