@@ -17,7 +17,7 @@
 
 barclamp:
   name: openstack
-  display: OpenStack Master Environment
+  display: OpenStack
   description: OpenStack Project has multiple components
   version: 0
   user_managed: false
