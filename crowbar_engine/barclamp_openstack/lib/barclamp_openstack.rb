@@ -16,11 +16,10 @@
 require "barclamp_openstack/engine"
 
 module BarclampOpenstack
+  CHEF_BASE = "/var/chef"
+  DATA_BAGS = "#{CHEF_BASE}/data_bags"
 
   def store_credential(type, user, password)
-    CHEF_BASE = "/var/chef"
-    DATA_BAGS = "#{CHEF_BASE}/data_bags"
-
     secret = "#{DATA_BAGS}/openstack_data_bag_secret"
     if ! File.exists?( secret )
       %x( openssl rand -base64 512 | tr -d '\r\n' > #{secret} )
@@ -29,6 +28,6 @@ module BarclampOpenstack
 
     data_bag = "#{type}_passwords"
 
-    %x( knife solo data bag create #{data_bag} #{user} --json \'{\"id\": \"#{user}\", \"password\": \"#{password}\"}\' -c /etc/chef/solo.rb --secret-file #{secret} )
+    %x( knife solo data bag create #{data_bag} #{user} --json \'{\"id\": \"#{user}\", \"#{user}\": \"#{password}\"}\' -c /etc/chef/solo.rb --secret-file #{secret} )
   end
 end
