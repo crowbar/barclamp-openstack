@@ -31,4 +31,17 @@ module ::Openstack
       end
     end
   end
+
+
+  # return the IPv4 (default) address of the service.
+  #
+  # @param [Mash] the service to query.
+  # @return [String] The IPv4 address.
+  def address_for_service service
+    if service['bind_address']
+      service['bind_address']
+    else
+      address_for service['bind_interface']
+    end
+  end
 end
