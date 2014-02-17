@@ -19,7 +19,7 @@ The following cookbooks are dependencies:
 Attributes
 ==========
 
-Please see the extensive inline documentation in `attributes/default.rb` for descriptions
+Please see the extensive inline documentation in `attributes/*.rb` for descriptions
 of all the settable attributes for this cookbook.
 
 Note that all attributes are in the `default["openstack"]` "namespace"
@@ -179,6 +179,16 @@ Testing
 =====
 
 Please refer to the [TESTING.md](TESTING.md) for instructions for testing the cookbook.
+
+Berkshelf
+=====
+
+Berks will resolve version requirements and dependencies on first run and
+store these in Berksfile.lock. If new cookbooks become available you can run
+`berks update` to update the references in Berksfile.lock. Berksfile.lock will
+be included in stable branches to provide a known good set of dependencies.
+Berksfile.lock will not be included in development branches to encourage
+development against the latest cookbooks.
 
 License and Author
 ==================

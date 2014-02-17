@@ -27,9 +27,9 @@ when 'debian'
   apt_components = node['openstack']['apt']['components']
 
   # Simple variable substitution for LSB codename and OpenStack release
-  apt_components.each do | comp | # rubocop:disable UselessAssignment
-    comp = comp.gsub '%release%', node['openstack']['release']
-    comp = comp.gsub '%codename%', node['lsb']['codename']
+  apt_components.each do | comp |
+    comp.gsub! '%release%', node['openstack']['release']
+    comp.gsub! '%codename%', node['lsb']['codename']
   end
 
   apt_repository 'openstack-ppa' do
@@ -39,36 +39,35 @@ when 'debian'
 
 when 'rhel'
 
-  yum_key "RPM-GPG-KEY-RDO-#{node['openstack']['release']}" do
-    url node['openstack']['yum']['repo-key']
-    action :add
+  if node['openstack']['yum']['rdo_enabled']
+    repo_action = :add
+  else
+    repo_action = :remove
   end
 
   yum_repository "RDO-#{node['openstack']['release']}" do
     description "OpenStack RDO repo for #{node['openstack']['release']}"
-    key "RPM-GPG-KEY-RDO-#{node['openstack']['release']}"
-    url node['openstack']['yum']['uri']
-    enabled 1
+    gpgkey node['openstack']['yum']['repo-key']
+    baseurl node['openstack']['yum']['uri']
+    enabled true
+    action repo_action
   end
 
 when 'suse'
   if node['lsb']['description'].nil?
-  # Workaround for SLE11
-  #
-  # On SLE11 ohai is broken and prefers lsb-release. We need to
-  # install it to be able to detect if recipe is run on openSUSE or SLES.
-  #
-  # https://bugzilla.novell.com/show_bug.cgi?id=809129
-  #
-  #
-    install_lsb_release = package 'lsb-release' do
-      action :nothing
+    # Ohai lsb does not work at all on SLES11SP3
+    # See https://tickets.opscode.com/browse/OHAI-454
+    # Until then, copy chef's lsb_release parsing code from its lsb module.
+    package 'lsb-release'
+
+    Mixlib::ShellOut.new('lsb_release -a').run_command.stdout.split("\n").each do |line|
+      case line
+      when /^Description:\s+(.+)$/
+        node.set_unless['lsb']['description'] = Regexp.last_match[1]
+      when /^Release:\s+(.+)$/
+        node.set_unless['lsb']['release'] = Regexp.last_match[1]
+      end
     end
-    reload_ohai = ohai 'reload_lsb' do
-      action :nothing
-    end
-    install_lsb_release.run_action(:install)
-    reload_ohai.run_action(:reload)
   end
   if node['lsb']['description'][/^SUSE Linux Enterprise Server/]
     release, patchlevel = node['platform_version'].split('.')

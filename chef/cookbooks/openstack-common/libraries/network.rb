@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 #
 # Cookbook Name:: openstack-common
 # library:: address
@@ -17,30 +19,16 @@
 # limitations under the License.
 #
 
-module ::Openstack
+module ::Openstack # rubocop:disable Documentation
   # return the IPv4 (default) address of the given interface.
   #
   # @param [String] interface The interface to query.
   # @param [String] family The protocol family to use.
   # @return [String] The IPv4 address.
-  def address_for interface, family="inet"
-    interface_node = node["network"]["interfaces"][interface]["addresses"]
+  def address_for(interface, family = 'inet')
+    interface_node = node['network']['interfaces'][interface]['addresses']
     interface_node.select do |address, data|
-      if data['family'] == family
-        return address
-      end
-    end
-  end
-
-  # return the IPv4 (default) address of the service.
-  #
-  # @param [Mash] service The service to query.
-  # @return [String] The IPv4 address.
-  def address_for_service(service)
-    if service['bind_address']
-      service['bind_address']
-    else
-      address_for service['bind_interface']
+      return address if data['family'] == family
     end
   end
 end
