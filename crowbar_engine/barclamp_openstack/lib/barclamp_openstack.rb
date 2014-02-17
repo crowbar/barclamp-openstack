@@ -20,9 +20,21 @@ require 'chef/encrypted_data_bag_item'
 module BarclampOpenstack
 
   def store_credential(bc, type, user, password)
+
+    Rails.logger.info("Adding encrypted credentials into encrypted data bags" )
+    Rails.logger.info("BC: " + bc )
+    Rails.logger.info("Type: " + type )
+    Rails.logger.info("User: " + user )
+    Rails.logger.info("Password: " + password)
+
     data_bag_dir = "/var/tmp/barclamps/#{bc}/chef-solo/data_bags"
     secret_file = "#{data_bag_dir}/openstack_data_bag_secret"
-    data_bag = "#{type}_passwords"
+    if(type == 'secrets')
+      data_bag = "#{type}"
+    else
+      data_bag = "#{type}_passwords"
+    end
+
     data_bag_file_path = "#{data_bag_dir}/#{data_bag}/"
 
     if ! File.directory?( data_bag_file_path )
@@ -47,9 +59,9 @@ module BarclampOpenstack
                       "data_bag" => data_bag,
                       "raw_data" => encrypted_data
                     }
-
     File.open(data_bag_file, 'w') do |f|
       f.print data_bag_data.to_json
     end
+    Rails.logger.info("data_bag_file: " + data_bag_file )
   end
 end
