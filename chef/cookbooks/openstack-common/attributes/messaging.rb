@@ -23,11 +23,16 @@
 # expected to create the user, pass, vhost in a wrapper rabbitmq cookbook.
 #
 
+# ******************** RabbitMQ Endpoint **************************************
+default['openstack']['endpoints']['mq']['host'] = '127.0.0.1'
+default['openstack']['endpoints']['mq']['scheme'] = nil
+default['openstack']['endpoints']['mq']['port'] = '5672'
+default['openstack']['endpoints']['mq']['path'] = nil
+default['openstack']['endpoints']['mq']['bind_interface'] = nil
+
 # Default messaging attributes
 default['openstack']['mq']['server_role'] = 'os-ops-messaging'
 default['openstack']['mq']['service_type'] = 'rabbitmq'
-default['openstack']['mq']['host'] = '127.0.0.1'
-default['openstack']['mq']['port'] = '5672'
 default['openstack']['mq']['user'] = 'guest'
 default['openstack']['mq']['vhost'] = '/'
 
@@ -36,8 +41,8 @@ default['openstack']['mq']['block-storage']['service_type'] = node['openstack'][
 default['openstack']['mq']['block-storage']['notification_topic'] = 'notifications'
 case node['openstack']['mq']['block-storage']['service_type']
 when 'qpid'
-  default['openstack']['mq']['block-storage']['qpid']['host'] = node['openstack']['mq']['host']
-  default['openstack']['mq']['block-storage']['qpid']['port'] = node['openstack']['mq']['port']
+  default['openstack']['mq']['block-storage']['qpid']['host'] = node['openstack']['endpoints']['mq']['host']
+  default['openstack']['mq']['block-storage']['qpid']['port'] = node['openstack']['endpoints']['mq']['port']
   default['openstack']['mq']['block-storage']['qpid']['qpid_hosts'] = ['127.0.0.1:5672']
   default['openstack']['mq']['block-storage']['qpid']['username'] = ''
   default['openstack']['mq']['block-storage']['qpid']['password'] = ''
@@ -55,8 +60,8 @@ when 'qpid'
 when 'rabbitmq'
   default['openstack']['mq']['block-storage']['rabbit']['userid'] = node['openstack']['mq']['user']
   default['openstack']['mq']['block-storage']['rabbit']['vhost'] = node['openstack']['mq']['vhost']
-  default['openstack']['mq']['block-storage']['rabbit']['port'] = node['openstack']['mq']['port']
-  default['openstack']['mq']['block-storage']['rabbit']['host'] = node['openstack']['mq']['host']
+  default['openstack']['mq']['block-storage']['rabbit']['port'] = node['openstack']['endpoints']['mq']['port']
+  default['openstack']['mq']['block-storage']['rabbit']['host'] = node['openstack']['endpoints']['mq']['host']
   default['openstack']['mq']['block-storage']['rabbit']['ha'] = false
   default['openstack']['mq']['block-storage']['rabbit']['use_ssl'] = false
   default['openstack']['mq']['block-storage']['rabbit']['notification_topic'] = node['openstack']['mq']['block-storage']['notification_topic']
@@ -66,8 +71,8 @@ end
 default['openstack']['mq']['compute']['service_type'] = node['openstack']['mq']['service_type']
 case node['openstack']['mq']['compute']['service_type']
 when 'qpid'
-  default['openstack']['mq']['compute']['qpid']['host'] = node['openstack']['mq']['host']
-  default['openstack']['mq']['compute']['qpid']['port'] = node['openstack']['mq']['port']
+  default['openstack']['mq']['compute']['qpid']['host'] = node['openstack']['endpoints']['mq']['host']
+  default['openstack']['mq']['compute']['qpid']['port'] = node['openstack']['endpoints']['mq']['port']
   default['openstack']['mq']['compute']['qpid']['qpid_hosts'] = ['127.0.0.1:5672']
   default['openstack']['mq']['compute']['qpid']['username'] = ''
   default['openstack']['mq']['compute']['qpid']['password'] = ''
@@ -83,8 +88,8 @@ when 'qpid'
 when 'rabbitmq'
   default['openstack']['mq']['compute']['rabbit']['userid'] = node['openstack']['mq']['user']
   default['openstack']['mq']['compute']['rabbit']['vhost'] = node['openstack']['mq']['vhost']
-  default['openstack']['mq']['compute']['rabbit']['port'] = node['openstack']['mq']['port']
-  default['openstack']['mq']['compute']['rabbit']['host'] = node['openstack']['mq']['host']
+  default['openstack']['mq']['compute']['rabbit']['port'] = node['openstack']['endpoints']['mq']['port']
+  default['openstack']['mq']['compute']['rabbit']['host'] = node['openstack']['endpoints']['mq']['host']
   default['openstack']['mq']['compute']['rabbit']['ha'] = false
   default['openstack']['mq']['compute']['rabbit']['use_ssl'] = false
 end
@@ -95,8 +100,8 @@ default['openstack']['mq']['image']['notifier_strategy'] = 'noop'
 default['openstack']['mq']['image']['notification_topic'] = 'glance_notifications'
 case node['openstack']['mq']['image']['service_type']
 when 'qpid'
-  default['openstack']['mq']['image']['qpid']['host'] = node['openstack']['mq']['host']
-  default['openstack']['mq']['image']['qpid']['port'] = node['openstack']['mq']['port']
+  default['openstack']['mq']['image']['qpid']['host'] = node['openstack']['endpoints']['mq']['host']
+  default['openstack']['mq']['image']['qpid']['port'] = node['openstack']['endpoints']['mq']['port']
   default['openstack']['mq']['image']['qpid']['qpid_hosts'] = ['127.0.0.1:5672']
   default['openstack']['mq']['image']['qpid']['username'] = ''
   default['openstack']['mq']['image']['qpid']['password'] = ''
@@ -114,8 +119,8 @@ when 'qpid'
 when 'rabbitmq'
   default['openstack']['mq']['image']['rabbit']['userid'] = node['openstack']['mq']['user']
   default['openstack']['mq']['image']['rabbit']['vhost'] = node['openstack']['mq']['vhost']
-  default['openstack']['mq']['image']['rabbit']['port'] = node['openstack']['mq']['port']
-  default['openstack']['mq']['image']['rabbit']['host'] = node['openstack']['mq']['host']
+  default['openstack']['mq']['image']['rabbit']['port'] = node['openstack']['endpoints']['mq']['port']
+  default['openstack']['mq']['image']['rabbit']['host'] = node['openstack']['endpoints']['mq']['host']
   default['openstack']['mq']['image']['rabbit']['use_ssl'] = false
   default['openstack']['mq']['image']['rabbit']['notification_topic'] = node['openstack']['mq']['image']['notification_topic']
 end
@@ -124,8 +129,8 @@ end
 default['openstack']['mq']['metering']['service_type'] = node['openstack']['mq']['service_type']
 case node['openstack']['mq']['metering']['service_type']
 when 'qpid'
-  default['openstack']['mq']['metering']['qpid']['host'] = node['openstack']['mq']['host']
-  default['openstack']['mq']['metering']['qpid']['port'] = node['openstack']['mq']['port']
+  default['openstack']['mq']['metering']['qpid']['host'] = node['openstack']['endpoints']['mq']['host']
+  default['openstack']['mq']['metering']['qpid']['port'] = node['openstack']['endpoints']['mq']['port']
   default['openstack']['mq']['metering']['qpid']['qpid_hosts'] = ['127.0.0.1:5672']
   default['openstack']['mq']['metering']['qpid']['username'] = ''
   default['openstack']['mq']['metering']['qpid']['password'] = ''
@@ -142,8 +147,8 @@ when 'qpid'
 when 'rabbitmq'
   default['openstack']['mq']['metering']['rabbit']['userid'] = node['openstack']['mq']['user']
   default['openstack']['mq']['metering']['rabbit']['vhost'] = node['openstack']['mq']['vhost']
-  default['openstack']['mq']['metering']['rabbit']['port'] = node['openstack']['mq']['port']
-  default['openstack']['mq']['metering']['rabbit']['host'] = node['openstack']['mq']['host']
+  default['openstack']['mq']['metering']['rabbit']['port'] = node['openstack']['endpoints']['mq']['port']
+  default['openstack']['mq']['metering']['rabbit']['host'] = node['openstack']['endpoints']['mq']['host']
   default['openstack']['mq']['metering']['rabbit']['ha'] = false
   default['openstack']['mq']['metering']['rabbit']['use_ssl'] = false
 end
@@ -152,8 +157,8 @@ end
 default['openstack']['mq']['network']['service_type'] = node['openstack']['mq']['service_type']
 case node['openstack']['mq']['network']['service_type']
 when 'qpid'
-  default['openstack']['mq']['network']['qpid']['host'] = node['openstack']['mq']['host']
-  default['openstack']['mq']['network']['qpid']['port'] = node['openstack']['mq']['port']
+  default['openstack']['mq']['network']['qpid']['host'] = node['openstack']['endpoints']['mq']['host']
+  default['openstack']['mq']['network']['qpid']['port'] = node['openstack']['endpoints']['mq']['port']
   default['openstack']['mq']['network']['qpid']['qpid_hosts'] = ['127.0.0.1:5672']
   default['openstack']['mq']['network']['qpid']['username'] = ''
   default['openstack']['mq']['network']['qpid']['password'] = ''
@@ -170,8 +175,8 @@ when 'qpid'
 when 'rabbitmq'
   default['openstack']['mq']['network']['rabbit']['userid'] = node['openstack']['mq']['user']
   default['openstack']['mq']['network']['rabbit']['vhost'] = node['openstack']['mq']['vhost']
-  default['openstack']['mq']['network']['rabbit']['port'] = node['openstack']['mq']['port']
-  default['openstack']['mq']['network']['rabbit']['host'] = node['openstack']['mq']['host']
+  default['openstack']['mq']['network']['rabbit']['port'] = node['openstack']['endpoints']['mq']['port']
+  default['openstack']['mq']['network']['rabbit']['host'] = node['openstack']['endpoints']['mq']['host']
   default['openstack']['mq']['network']['rabbit']['ha'] = false
 end
 
@@ -179,8 +184,8 @@ end
 default['openstack']['mq']['orchestration']['service_type'] = node['openstack']['mq']['service_type']
 case node['openstack']['mq']['orchestration']['service_type']
 when 'qpid'
-  default['openstack']['mq']['orchestration']['qpid']['host'] = node['openstack']['mq']['host']
-  default['openstack']['mq']['orchestration']['qpid']['port'] = node['openstack']['mq']['port']
+  default['openstack']['mq']['orchestration']['qpid']['host'] = node['openstack']['endpoints']['mq']['host']
+  default['openstack']['mq']['orchestration']['qpid']['port'] = node['openstack']['endpoints']['mq']['port']
   default['openstack']['mq']['orchestration']['qpid']['qpid_hosts'] = ['127.0.0.1:5672']
   default['openstack']['mq']['orchestration']['qpid']['username'] = ''
   default['openstack']['mq']['orchestration']['qpid']['password'] = ''
@@ -197,8 +202,8 @@ when 'qpid'
 when 'rabbitmq'
   default['openstack']['mq']['orchestration']['rabbit']['userid'] = node['openstack']['mq']['user']
   default['openstack']['mq']['orchestration']['rabbit']['vhost'] = node['openstack']['mq']['vhost']
-  default['openstack']['mq']['orchestration']['rabbit']['port'] = node['openstack']['mq']['port']
-  default['openstack']['mq']['orchestration']['rabbit']['host'] = node['openstack']['mq']['host']
+  default['openstack']['mq']['orchestration']['rabbit']['port'] = node['openstack']['endpoints']['mq']['port']
+  default['openstack']['mq']['orchestration']['rabbit']['host'] = node['openstack']['endpoints']['mq']['host']
   default['openstack']['mq']['orchestration']['rabbit']['ha'] = false
   default['openstack']['mq']['orchestration']['rabbit']['use_ssl'] = false
 end

@@ -161,4 +161,23 @@ describe ::Openstack do
       @subject.db_uri('compute', 'user', 'pass').should == expect
     end
   end
+
+  describe '#address' do
+    it 'returns interface IP if bind_interface specified' do
+      ep_hash = {
+        'bind_interface' => 'eth0',
+        'host' => '5.6.7.8'
+      }
+      @subject.stub('address_for').and_return '1.2.3.4'
+      @subject.address(ep_hash).should == '1.2.3.4'
+    end
+    it 'returns host IP if bind_interface not specified' do
+      ep_hash = {
+        'bind_interface' => nil,
+        'host' => '5.6.7.8'
+      }
+      @subject.stub('address_for').and_return '1.2.3.4'
+      @subject.address(ep_hash).should == '5.6.7.8'
+    end
+  end
 end

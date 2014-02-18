@@ -36,7 +36,7 @@ module ::Openstack # rubocop:disable Documentation
       return nil unless hash['host']
 
       scheme = hash['scheme'] ? hash['scheme'] : 'http'
-      host = hash['host']
+      host = address hash
       port = hash['port']  # Returns nil if missing, which is fine.
       path = hash['path']  # Returns nil if missing, which is fine.
       ::URI::Generic.new scheme, nil, host, port, nil, path, nil, nil, nil
