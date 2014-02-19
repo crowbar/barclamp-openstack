@@ -41,7 +41,7 @@ default['openstack']['auth']['validate_certs'] = true
 # routine that looks up the value of encrypted databag values. This routine
 # uses the secret key file located at the following location to decrypt the
 # values in the data bag.
-default['openstack']['secret']['key_path'] = '/var/chef/data_bags/openstack_data_bag_secret'
+default['openstack']['secret']['key_path'] = '/etc/chef/openstack_data_bag_secret'
 
 # The name of the encrypted data bag that stores service user passwords, with
 # each key in the data bag corresponding to a named OpenStack service, like
