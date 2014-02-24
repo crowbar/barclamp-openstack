@@ -43,7 +43,7 @@ nav:
     openstack: '"/openstack_users_guide.pdf", { :link => { :target => "_blank" } }'
 
 roles:
-  - name: os-base
+  - name: openstack-base
     jig: chef-solo
     requires:
       - crowbar-installed-node
