@@ -1,0 +1,2 @@
+#!/bin/bash
+chown -R crowbar:crowbar $BC_PATH/chef-solo
