@@ -47,6 +47,8 @@ roles:
     jig: chef-solo
     requires:
       - crowbar-installed-node
+    flags:
+      - implicit
 
 debs:
   ubuntu-12.04:
