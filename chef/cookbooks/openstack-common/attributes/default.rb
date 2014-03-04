@@ -72,7 +72,8 @@ default['openstack']['release'] = 'havana'
 # the node['lsb']['codename'] Ohai value and %release% will be replaced
 # by the value of node['openstack']['release']
 default['openstack']['apt']['uri'] = 'http://ubuntu-cloud.archive.canonical.com/ubuntu'
-default['openstack']['apt']['components'] = ["precise-updates/#{node['openstack']['release']}", 'main']
+#####   default['openstack']['apt']['components'] = ["precise-updates/#{node['openstack']['release']}", 'main']
+default['openstack']['apt']['components'] = nil
 # For the SRU packaging, use this:
 # default['openstack']['apt']['components'] = [ '%codename%-proposed/%release%', 'main' ]
 

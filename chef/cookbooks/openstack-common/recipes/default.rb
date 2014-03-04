@@ -34,7 +34,7 @@ when 'debian'
 
   apt_repository 'openstack-ppa' do
     uri node['openstack']['apt']['uri']
-    components apt_components
+    components apt_components unless apt_components.nil? || apt_components.length==0
   end
 
 when 'rhel'
