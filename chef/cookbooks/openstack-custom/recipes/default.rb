@@ -13,4 +13,5 @@
 # limitations under the License.
 #
 
-node.override['openstack']['apt']['components'] = nil
+node.override['openstack']['apt']['components'] = []
+Chef::Log.debug("Override set for ['openstack']['apt']['components']: #{node['openstack']['apt']['components']}")
