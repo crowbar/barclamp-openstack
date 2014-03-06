@@ -30,12 +30,12 @@ when 'debian'
   apt_components.each do | comp |
     comp.gsub! '%release%', node['openstack']['release']
     comp.gsub! '%codename%', node['lsb']['codename']
-  end
+  end unless apt_components.nil? || apt_components.length == 0
 
   apt_repository 'openstack-ppa' do
     uri node['openstack']['apt']['uri']
-    components apt_components unless apt_components.nil? || apt_components.length==0
-  end
+    components apt_components
+  end unless apt_components.nil? || apt_components.length == 0
 
 when 'rhel'
 
