@@ -13,5 +13,5 @@
 # limitations under the License.
 #
 
-node.override['openstack']['apt']['components'] = []
-Chef::Log.debug("Override set for ['openstack']['apt']['components']: #{node['openstack']['apt']['components']}")
+node.override['openstack']['apt']['live_updates_enabled'] = false
+Chef::Log.debug("Override set for ['openstack']['apt']['live_updates_enabled']: #{node['openstack']['apt']['live_updates_enabled']}")
