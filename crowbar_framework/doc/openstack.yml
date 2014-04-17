@@ -15,36 +15,19 @@
 # limitations under the License.
 #
 
-barclamp:
-  name: openstack
-  display: OpenStack
-  description: OpenStack Project has multiple components
-  version: 0
-  user_managed: false
-  member:
-    - openstack
-  requires:
-    - '@crowbar'
-    - nova_dashboard
-    - keystone
-  os_support:
-    - ubuntu-10.10
-    - ubuntu-12.04
+root:
+  topic_meta_data:
+    author: 'Multiple authors'
+    license: 'Apache 2'
+    copyright: '2014 by Dell, Inc'
+    date: 'June 1, 2012'
+    order: 'alpha'
+    url: '/crowbar/openstack/1.0'
+    format: 'markdown'
 
-crowbar:
-  layout: 1
-  order: 200
-  run_order: 200
-  chef_order: 200
-
-nav:
   barclamps:
     openstack:
-      route: grouped_barclamps_path
-      params:
-        controller: openstack
-  help:
-    crowbar_dg:
-      path: /docs/crowbar_deployment_guide.pdf
-    openstack: 
-      path: /docs/openstack_users_guide.pdf
+      topic_meta_data:
+        file: 'index'
+        url: '/crowbar/openstack/1.0'
+        order: 100
