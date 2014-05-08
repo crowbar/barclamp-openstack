@@ -16,20 +16,17 @@
 #
 
 barclamp:
-  name: openstack
-  display: OpenStack
-  description: OpenStack Project has multiple components
+  name: 'openstack'
+  display: 'OpenStack'
+  description: 'OpenStack Project has multiple components'
   version: 0
   user_managed: false
   member:
-    - openstack
+    - 'openstack'
   requires:
     - '@crowbar'
-    - nova_dashboard
-    - keystone
-  os_support:
-    - ubuntu-10.10
-    - ubuntu-12.04
+    - 'nova_dashboard'
+    - 'keystone'
 
 crowbar:
   layout: 1
@@ -40,11 +37,11 @@ crowbar:
 nav:
   barclamps:
     openstack:
-      route: grouped_barclamps_path
+      route: 'grouped_barclamps_path'
       params:
-        controller: openstack
+        controller: 'openstack'
   help:
     crowbar_dg:
-      path: /docs/crowbar_deployment_guide.pdf
+      path: '/docs/crowbar_deployment_guide.pdf'
     openstack: 
-      path: /docs/openstack_users_guide.pdf
+      path: '/docs/openstack_users_guide.pdf'

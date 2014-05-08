@@ -16,5 +16,7 @@
 # limitations under the License.
 #
 
-class OpenstackService < ServiceObject
+module Barclamp
+  module OpenstackHelper
+  end
 end
