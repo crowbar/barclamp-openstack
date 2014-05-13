@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #
 # Copyright 2011-2013, Dell
 # Copyright 2013-2014, SUSE LINUX Products GmbH
@@ -6,7 +7,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,7 +18,17 @@
 
 class OpenstackController < BarclampController
   def index
-    @title = I18n.t("title", :scope => "barclamp.openstack.index")
+    @title = I18n.t("title", scope: "barclamp.openstack.index")
     super
+  end
+
+  protected
+
+  def initialize_service
+    @service_object = OpenstackService.new logger
+  end
+
+  def permitted_params
+    params.require(:openstack)
   end
 end

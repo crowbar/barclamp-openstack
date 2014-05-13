@@ -16,5 +16,10 @@
 # limitations under the License.
 #
 
-class OpenstackService < ServiceObject
+module Crowbar
+  module Registry
+    class Openstack < Base
+
+    end
+  end
 end

@@ -6,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,20 +16,17 @@
 #
 
 barclamp:
-  name: openstack
-  display: OpenStack
-  description: OpenStack Project has multiple components
+  name: 'openstack'
+  display: 'OpenStack'
+  description: 'OpenStack Project has multiple components'
   version: 0
   user_managed: false
   member:
-    - openstack
+    - 'openstack'
   requires:
     - '@crowbar'
-    - nova_dashboard
-    - keystone
-  os_support:
-    - ubuntu-10.10
-    - ubuntu-12.04
+    - 'nova_dashboard'
+    - 'keystone'
 
 crowbar:
   layout: 1
@@ -39,6 +36,12 @@ crowbar:
 
 nav:
   barclamps:
-    openstack: index_barclamp_path(:controller=>'openstack')
+    openstack:
+      route: 'grouped_barclamps_path'
+      params:
+        controller: 'openstack'
   help:
-    openstack: '"/openstack_users_guide.pdf", { :link => { :target => "_blank" } }'
+    crowbar_dg:
+      path: '/docs/crowbar_deployment_guide.pdf'
+    openstack: 
+      path: '/docs/openstack_users_guide.pdf'
