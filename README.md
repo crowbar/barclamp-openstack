@@ -15,9 +15,7 @@ system for specific applications.
 About this barclamp
 -------------------
 
-This barclamp is intended as an overlay barclamp for other OpenStack barclamps. It provides common functionality and
-UI that can be used to consolidate the suite of OpenStack barclamps under a single entity. Information for this barclamp
-is maintained on the [Crowbar Framework Wiki](https://github.com/crowbar/crowbar/wiki)
+Information for this barclamp is maintained on the [Crowbar Framework Wiki](https://github.com/crowbar/crowbar/wiki)
 
 Legals
 ------
