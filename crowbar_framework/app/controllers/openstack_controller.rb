@@ -20,4 +20,10 @@ class OpenstackController < BarclampController
     @title = I18n.t("title", :scope => "barclamp.openstack.index")
     super
   end
+
+  protected
+
+  def initialize_service
+    @service_object = OpenstackService.new logger
+  end
 end
