@@ -117,12 +117,16 @@ class CrowbarOpenStackHelper
   private
 
   def self.get_node(node, role, barclamp, instance)
-    nodes, _, _ = Chef::Search::Query.new.search(:node, "roles:#{role} AND #{barclamp}_config_environment:#{barclamp}-config-#{instance}")
-    if nodes.first
-      result = nodes.first
-      result = node if result.name == node.name
+    result = nil
+
+    if node.roles.include?(role) && \
+      node.has_key?(barclamp) && \
+      node[barclamp].has_key?("config") && \
+      node[barclamp]["config"]["environment"] == "#{barclamp}-config-#{instance}"
+      result = node
     else
-      result = nil
+      nodes, _, _ = Chef::Search::Query.new.search(:node, "roles:#{role} AND #{barclamp}_config_environment:#{barclamp}-config-#{instance}")
+      result = nodes.first unless nodes.empty?
     end
 
     result
