@@ -60,7 +60,7 @@ class CrowbarOpenStackHelper
       database = get_node(node, "database-server", "database", instance)
 
       if database.nil?
-        Chef::Log.info("No database server found!")
+        Chef::Log.warn("No database server found!")
       else
         address = CrowbarDatabaseHelper.get_listen_address(database)
         backend_name = DatabaseLibrary::Database::Util.get_backend_name(database)
@@ -97,7 +97,7 @@ class CrowbarOpenStackHelper
       rabbit = get_node(node, "rabbitmq-server", "rabbitmq", instance)
 
       if rabbit.nil?
-        Chef::Log.info("No RabbitMQ server found!")
+        Chef::Log.warn("No RabbitMQ server found!")
       else
         @rabbitmq_settings[instance] = {
           :address => rabbit[:rabbitmq][:address],
