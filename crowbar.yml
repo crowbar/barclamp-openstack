@@ -19,7 +19,7 @@ barclamp:
   name: 'openstack'
   display: 'OpenStack'
   description: 'OpenStack Project has multiple components'
-  version: 0
+  version: 1
   user_managed: false
   member:
     - 'openstack'
